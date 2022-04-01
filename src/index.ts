@@ -63,7 +63,7 @@ import utils from './utils';
           let outputFileName = '';
 
           for (const languageTitle in allLanguages) {
-            outputFileName = `${languageTitle.trim().toLowerCase()}${utils.getFileExtension(filePath)}`;
+            outputFileName = `${languageTitle.trim()}${utils.getFileExtension(filePath)}`;
 
             const unflattenedLanguageObj = unflatten(allLanguages[languageTitle], { object: true });
 

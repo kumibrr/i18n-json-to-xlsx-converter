@@ -19,7 +19,7 @@ const utils_1 = require("./utils");
         const isMultipleJSONFilePaths = utils_1.default.getJSONFilePaths(filePath).length > 1;
         const isMultipleJSONFilePathsValid = utils_1.default.isMultipleJSONFilePathsValid(filePath);
         if (utils_1.default.isJSON(sourceFileType) || utils_1.default.isXLSX(sourceFileType) || isMultipleJSONFilePathsValid) {
-            utils_1.default.createProcessMessageByType(filePath, sourceFileType, (isMultipleJSONFilePathsValid && isMultipleJSONFilePaths));
+            utils_1.default.createProcessMessageByType(filePath, sourceFileType, isMultipleJSONFilePathsValid && isMultipleJSONFilePaths);
         }
         else {
             utils_1.default.checkForMultipleJSONFileErrors(filePath, process);
@@ -53,7 +53,7 @@ const utils_1 = require("./utils");
                 .then((allLanguages) => {
                 let outputFileName = '';
                 for (const languageTitle in allLanguages) {
-                    outputFileName = `${languageTitle.trim().toLowerCase()}${utils_1.default.getFileExtension(filePath)}`;
+                    outputFileName = `${languageTitle.trim()}${utils_1.default.getFileExtension(filePath)}`;
                     const unflattenedLanguageObj = unflatten(allLanguages[languageTitle], { object: true });
                     fs.writeFileSync(utils_1.default.documentSavePath(filePath, outputFileName), JSON.stringify(unflattenedLanguageObj, null, 2), 'utf-8');
                     utils_1.default.log(chalk.yellow(`Output file name for ${languageTitle} is ${outputFileName}`));
